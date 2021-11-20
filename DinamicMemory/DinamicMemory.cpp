@@ -146,6 +146,7 @@ int** push_row_back(int** arr, unsigned int& rows, const unsigned int cols);
 int** pop_row_back(int** arr, unsigned int& rows, const unsigned int cols);
 
 void push_col_back(int** arr, const unsigned int rows, unsigned int& cols);
+void pop_col_back(int** array, const unsigned int rows, unsigned int& cols);
 
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
@@ -205,7 +206,9 @@ void main()
 	cout << "Добавляем столбец в конец массива:\n";
 	push_col_back(arr, rows, cols);
 	Print(arr, rows, cols);
-
+	std::cout << "Удаляем столбец с конца массива:\n";
+	pop_col_back(arr, rows, cols);
+	Print(arr, rows, cols);
 	clear(arr, rows);
 #endif // DYNAMIC_MEMORY_2
 
@@ -371,4 +374,14 @@ void push_col_back(int** arr, const unsigned int rows, unsigned int& cols)
 		arr[i] = buffer;
 	}
 	cols++;
+}
+void pop_col_back(int** array, const unsigned int rows, unsigned int& cols)
+{
+	for (int i = 0; i < rows; ++i)
+	{
+		int* buffer = new int[cols - 1]{};
+		for (int j = 0; j < cols; ++j)
+			buffer[j] = array[i][j];
+	}
+	cols--;
 }
